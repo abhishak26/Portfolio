@@ -150,7 +150,7 @@ export function ContactForm() {
           id="message"
           name="message"
           rows={5}
-          className="w-full rounded-lg border border-line bg-surface px-4 py-3 text-sm text-fg outline-none transition-colors placeholder:text-faint focus:border-lime"
+          className="w-full resize-none rounded-lg border border-line bg-surface px-4 py-3 text-base text-fg outline-none transition-colors placeholder:text-faint focus:border-lime"
           value={values.message}
           onChange={(e) => update("message", e.target.value)}
           required

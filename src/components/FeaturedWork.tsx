@@ -5,13 +5,13 @@ import { SectionHeading } from "@/components/SectionHeading";
 
 export function FeaturedWork() {
   return (
-    <section id="work" className="relative py-20 sm:py-28">
+    <section id="work" className="relative py-14 sm:py-20">
       <div className="container-page">
         <Reveal>
           <SectionHeading
-            index="05"
-            eyebrow="Selected work"
-            title="Real digital experiences created for real businesses."
+            eyebrow="Projects"
+            title="Our projects"
+            description="A selection of digital products and websites we have designed and built for growing businesses."
           />
         </Reveal>
         <div className="mt-4">

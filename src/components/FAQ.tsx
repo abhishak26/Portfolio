@@ -9,10 +9,10 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative py-20 sm:py-28">
+    <section id="faq" className="relative py-14 sm:py-20">
       <div className="container-page">
         <Reveal>
-          <SectionHeading index="10" eyebrow="FAQ" title="Questions, answered plainly." />
+          <SectionHeading eyebrow="FAQ" title="Questions, answered plainly." />
         </Reveal>
         <div className="mt-10 divide-y divide-line border-y border-line">
           {faqs.map((item, i) => {

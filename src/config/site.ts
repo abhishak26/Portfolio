@@ -12,12 +12,14 @@ export const site = {
   whatsapp: "+91 63821 19479",
   whatsappHref: "https://wa.me/916382119479",
   location: "Chennai, Tamil Nadu, India",
+  address: "Sree Preethi Illam, 5, 2nd Cross Rd, Lakshmanan Nagar, Perambur, Chennai, Tamil Nadu 600082",
   foundedNote: "",
   social: {
-    instagram: "",
-    linkedin: "",
-    youtube: "",
-    github: "",
+    instagram: "https://instagram.com/thevisioninfotech",
+    whatsapp: "https://wa.me/916382119479",
+    facebook: "https://facebook.com/thevisioninfotech",
+    youtube: "https://youtube.com/@thevisioninfotech",
+    x: "https://x.com/thevisioninfotech",
   },
   assets: {
     logo: "/images/logo/thevision-infotech.png",
@@ -38,8 +40,8 @@ export function activeSocialLinks() {
 export const navItems = [
   { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
+  { label: "Projects", href: "#work" },
   { label: "About", href: "#why" },
-  { label: "Team", href: "#team" },
+  { label: "Portfolio", href: "#team" },
   { label: "Contact", href: "#contact" },
 ] as const;

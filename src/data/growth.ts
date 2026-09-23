@@ -20,16 +20,13 @@ export const marketingItems = [
 ];
 
 export const platforms = [
-  "Meta Business Suite",
-  "Meta Ads Manager",
-  "Google Ads",
-  "YouTube Ads",
-  "YouTube Studio",
-  "LinkedIn Page Admin",
-  "LinkedIn Campaign Manager",
-  "Google Business Profile Manager",
-  "Canva",
-  "Figma",
+  { name: "Meta Ads Manager", icon: "https://cdn.simpleicons.org/meta/1877F2", use: "Paid campaigns" },
+  { name: "Google Ads", icon: "https://cdn.simpleicons.org/googleads/4285F4", use: "Search campaigns" },
+  { name: "YouTube Ads", icon: "https://cdn.simpleicons.org/youtube/FF0000", use: "Video campaigns" },
+  { name: "LinkedIn Campaigns", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg", use: "B2B campaigns" },
+  { name: "Google Business", icon: "https://cdn.simpleicons.org/google/4285F4", use: "Local visibility" },
+  { name: "Canva", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg", use: "Creative production" },
+  { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", use: "Design systems" },
 ];
 
 export const videoServices = [

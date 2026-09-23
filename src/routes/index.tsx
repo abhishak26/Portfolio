@@ -7,7 +7,6 @@ import { Growth } from "@/components/Growth";
 import { Hero } from "@/components/Hero";
 import { Intro } from "@/components/Intro";
 import { Philosophy } from "@/components/Philosophy";
-import { Process } from "@/components/Process";
 import { Services } from "@/components/Services";
 import { SiteShell } from "@/components/SiteShell";
 import { Team } from "@/components/Team";
@@ -27,7 +26,6 @@ function Home() {
       <Growth />
       <FeaturedWork />
       <WhyUs />
-      <Process />
       <Technology />
       <Team />
       <Philosophy />

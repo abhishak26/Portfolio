@@ -3,15 +3,15 @@
 @theme {
   --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
 
-  --color-bg: #07080a;
-  --color-bg-elevated: #0c0e12;
-  --color-surface: #11141a;
-  --color-fg: #f3f4ef;
-  --color-muted: #9aa394;
-  --color-faint: #6b7266;
-  --color-lime: #b8ff65;
+  --color-bg: #ffffff;
+  --color-bg-elevated: #f3f4f0;
+  --color-surface: #ffffff;
+  --color-fg: #000000;
+  --color-muted: #3f463d;
+  --color-faint: #5d6559;
+  --color-lime: #4d8b16;
   --color-lime-fg: #081206;
-  --color-line: rgb(243 244 239 / 0.1);
+  --color-line: rgb(0 0 0 / 0.1);
 
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
@@ -39,6 +39,7 @@
 
   body {
     font-family: var(--font-sans);
+    font-size: 16px;
     background-color: var(--color-bg);
     color: var(--color-fg);
   }
@@ -69,7 +70,7 @@
   }
 
   img {
-    outline: 1px solid rgb(255 255 255 / 0.08);
+    outline: 1px solid rgb(0 0 0 / 0.08);
     outline-offset: -1px;
   }
 
@@ -85,24 +86,39 @@
 
 @layer utilities {
   .glass {
-    background: rgb(255 255 255 / 0.04);
-    border: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(0 0 0 / 0.04);
+    border: 1px solid rgb(0 0 0 / 0.1);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
 
   .glass-strong {
-    background: rgb(12 14 18 / 0.72);
-    border: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(255 255 255 / 0.88);
+    border: 1px solid rgb(0 0 0 / 0.14);
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.08);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
 
   .bg-grid {
-    background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
-    background-size: 72px 72px;
+    background: radial-gradient(circle at 50% 30%, rgb(184 255 101 / 0.09), transparent 45%);
+  }
+
+  .site-atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 12% 18%, rgb(184 255 101 / 0.12), transparent 24rem),
+      radial-gradient(circle at 86% 58%, rgb(0 0 0 / 0.06), transparent 28rem),
+      radial-gradient(circle at 50% 92%, rgb(184 255 101 / 0.08), transparent 30rem);
+    animation: atmosphere-drift 30s linear infinite;
+  }
+
+  @keyframes atmosphere-drift {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(1.06); opacity: 1; }
   }
 
   .glow-soft {
@@ -148,6 +164,15 @@
     color: var(--color-lime);
   }
 
+  main > section:nth-of-type(even) {
+    background: rgb(243 244 240 / 0.78);
+    border-block: 1px solid rgb(0 0 0 / 0.06);
+  }
+
+  main > section:nth-of-type(odd) {
+    background: rgb(255 255 255 / 0.82);
+  }
+
   .container-page {
     width: 100%;
     max-width: var(--max-width-container);
@@ -179,5 +204,9 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .site-atmosphere {
+    animation: none;
   }
 }

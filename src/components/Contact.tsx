@@ -7,19 +7,18 @@ import { SectionHeading } from "@/components/SectionHeading";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative py-20 sm:py-28">
+    <section id="contact" className="relative py-14 sm:py-20">
       <div className="container-page">
         <Reveal>
-          <SectionHeading
-            index="11"
+              <SectionHeading
             eyebrow="Contact"
             title="Let's talk."
-            description="Have a project in mind? Tell us what you need and we'll get back to you."
+            description="Tell us what you need and we will get back to you."
           />
         </Reveal>
-        <div className="mt-12 grid gap-6 lg:grid-cols-12">
+        <div className="mt-8 grid gap-6 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
-            <div className="space-y-3">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               <InfoCard
                 icon={Mail}
                 label="Email"
@@ -33,7 +32,7 @@ export function Contact() {
                 value={site.whatsapp}
                 href={site.whatsappHref}
               />
-              <InfoCard icon={MapPin} label="Location" value={site.location} />
+              <InfoCard icon={MapPin} label="Address" value={site.address} />
             </div>
           </Reveal>
           <Reveal className="lg:col-span-7" delay={0.08}>
@@ -60,8 +59,8 @@ function InfoCard({
 }) {
   const inner = (
     <>
-      <span className="flex size-10 items-center justify-center rounded-full border border-line text-lime">
-        <Icon className="size-4" strokeWidth={1.7} />
+      <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-black bg-black text-white shadow-sm">
+        <Icon className="size-5" strokeWidth={1.8} />
       </span>
       <span>
         <span className="block text-xs tracking-wide text-faint uppercase">{label}</span>
@@ -69,7 +68,7 @@ function InfoCard({
       </span>
     </>
   );
-  const className = "glass flex items-center gap-4 rounded-xl p-4";
+  const className = "glass flex items-center gap-4 rounded-2xl p-4 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-lime/50 hover:shadow-glow";
   if (href) {
     return (
       <a href={href} className={className} {...(href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}>

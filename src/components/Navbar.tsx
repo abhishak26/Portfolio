@@ -15,17 +15,9 @@ function scrollToHash(href: string) {
 }
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
   const reduce = useReducedMotion();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const nodes = sectionIds
@@ -55,6 +47,7 @@ export function Navbar() {
 
   function onNavClick(href: string) {
     setOpen(false);
+    setActive(href.replace("#", ""));
     window.setTimeout(() => scrollToHash(href), 10);
   }
 
@@ -62,7 +55,7 @@ export function Navbar() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300",
-        scrolled || open ? "glass-strong border-b border-line" : "border-b border-transparent bg-transparent",
+        "glass-strong border-b border-line",
       )}
     >
       <a
@@ -89,8 +82,12 @@ export function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
+                onClick={(event) => {
+                  event.preventDefault();
+                  onNavClick(item.href);
+                }}
                 className={cn(
-                  "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200",
+                  "relative rounded-full px-3.5 py-2 text-base font-medium transition-[color,background-color,transform] duration-200 active:scale-95 active:bg-lime/10 active:text-lime",
                   isActive ? "text-fg" : "text-muted hover:text-fg",
                 )}
               >
@@ -112,7 +109,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="relative z-10 flex size-11 items-center justify-center rounded-full border border-line text-fg lg:hidden"
+          className="relative z-10 flex size-11 items-center justify-center rounded-full border border-line text-fg transition-[background-color,border-color,color,transform] duration-200 active:scale-90 active:border-lime active:bg-lime/10 active:text-lime lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -126,25 +123,28 @@ export function Navbar() {
         {open ? (
           <motion.div
             id="mobile-nav"
-            className="border-t border-line bg-bg lg:hidden"
+            className="max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-line bg-bg-elevated shadow-[0_18px_40px_rgb(0_0_0_/_0.12)] lg:hidden"
             initial={reduce ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
             <nav className="container-page flex flex-col gap-1 py-6" aria-label="Mobile">
-              {navItems.map((item) => (
-                <a
+              {navItems.map((item, index) => (
+                <motion.a
                   key={item.href}
                   href={item.href}
-                  className="rounded-lg px-2 py-3 text-2xl font-medium tracking-tight text-fg"
+                  className="rounded-xl border border-transparent px-3 py-3 text-2xl font-medium tracking-tight text-fg transition-[background-color,border-color,color,transform] duration-200 hover:border-line hover:bg-white active:scale-[0.98] active:border-lime active:bg-lime/10 active:text-lime"
+                  initial={reduce ? false : { opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.25, delay: reduce ? 0 : index * 0.04 }}
                   onClick={(event) => {
                     event.preventDefault();
                     onNavClick(item.href);
                   }}
                 >
                   {item.label}
-                </a>
+                </motion.a>
               ))}
               <Button
                 href="#contact"

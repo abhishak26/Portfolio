@@ -15,8 +15,7 @@ export function CTA() {
             <span className="block text-lime">Let's build it.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            Tell us what you're working on. We'll listen, understand the requirement, and
-            see how we can help.
+            Tell us what you need and we will help you plan the next step.
           </p>
           <div className="mt-8 flex justify-center">
             <Button href="#contact" className="min-w-48">

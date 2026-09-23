@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { site } from "@/config/site";
-import { services } from "@/data/services";
 import { easeOut } from "@/lib/motion";
 import { Button } from "@/components/Button";
 
@@ -24,7 +23,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24 lg:min-h-[100svh] lg:pt-36 lg:pb-24"
+      className="relative isolate overflow-hidden pt-24 pb-12 sm:pt-28 sm:pb-16 lg:min-h-[calc(100svh-12rem)] lg:pt-28 lg:pb-16"
     >
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-40" />
       <div className="pointer-events-none absolute right-[-6rem] top-24 h-72 w-72 rounded-full glow-soft" />
@@ -36,18 +35,10 @@ export function Hero() {
       ) : null}
 
       <div className="container-page relative z-10">
-        <div className="grid items-end gap-12 lg:grid-cols-12 lg:min-h-[calc(100svh-11rem)]">
-          <div className="lg:col-span-8">
-            <motion.p
-              className="eyebrow mb-6"
-              initial={reduce ? false : { opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: easeOut }}
-            >
-              {site.location} · Digital agency
-            </motion.p>
+        <div className="flex min-h-[32rem] items-center justify-center lg:min-h-[calc(100svh-12rem)]">
+          <div className="max-w-5xl text-center">
             <motion.h1
-              className="text-hero"
+              className="text-hero mx-auto max-w-5xl"
               initial={reduce ? false : { opacity: 0, y: 24, filter: "blur(8px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.85, ease: easeOut, delay: 0.08 }}
@@ -58,7 +49,7 @@ export function Hero() {
               </span>
             </motion.h1>
             <motion.p
-              className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg"
+              className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted sm:text-lg"
               initial={reduce ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: easeOut, delay: 0.2 }}
@@ -68,7 +59,7 @@ export function Hero() {
               digital presence.
             </motion.p>
             <motion.div
-              className="mt-8 flex flex-wrap items-center gap-3"
+              className="mt-9 flex flex-wrap items-center justify-center gap-3"
               initial={reduce ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: easeOut, delay: 0.3 }}
@@ -82,27 +73,6 @@ export function Hero() {
                 <ArrowDownRight className="size-4" />
               </Button>
             </motion.div>
-          </div>
-
-          <div className="lg:col-span-4">
-            <div className="flex flex-col gap-3">
-              {services.slice(0, 4).map((service, i) => (
-                <motion.a
-                  key={service.id}
-                  href="#services"
-                  className="glass group flex items-center justify-between rounded-xl px-4 py-3.5"
-                  initial={reduce ? false : { opacity: 0, x: 24 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.55, ease: easeOut, delay: 0.25 + i * 0.08 }}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="tabular-nums text-xs text-lime">{service.number}</span>
-                    <span className="text-sm font-medium">{service.title}</span>
-                  </span>
-                  <ArrowUpRight className="size-4 text-faint transition-colors group-hover:text-lime" />
-                </motion.a>
-              ))}
-            </div>
           </div>
         </div>
       </div>
