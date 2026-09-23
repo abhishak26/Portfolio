@@ -1,4 +1,5 @@
 import { useState, type FormEvent, type ReactElement } from "react";
+import { site } from "@/config/site";
 import { serviceOptions } from "@/data/services";
 import { cn } from "@/lib/utils";
 
@@ -15,10 +16,27 @@ const empty = {
 };
 
 export function ContactForm() {
+  const staticContactFallback = import.meta.env.VITE_STATIC_CONTACT_DISABLED === "true";
   const [values, setValues] = useState(empty);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<Status>("idle");
   const [serverMessage, setServerMessage] = useState("");
+
+  function buildMailtoLink() {
+    const subject = encodeURIComponent(`Website enquiry: ${values.service || "General enquiry"}`);
+    const body = encodeURIComponent(
+      [
+        `Name: ${values.name.trim()}`,
+        `Email: ${values.email.trim()}`,
+        `Phone / WhatsApp: ${values.phone.trim() || "N/A"}`,
+        `Company: ${values.company.trim() || "N/A"}`,
+        `Service: ${values.service || "N/A"}`,
+        "",
+        values.message.trim(),
+      ].join("\n"),
+    );
+    return `mailto:${site.contactEmail}?subject=${subject}&body=${body}`;
+  }
 
   function update(key: keyof typeof empty, value: string) {
     setValues((prev) => ({ ...prev, [key]: value }));
@@ -47,6 +65,14 @@ export function ContactForm() {
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!validate()) return;
+
+    if (staticContactFallback) {
+      window.location.href = buildMailtoLink();
+      setStatus("success");
+      setServerMessage(`GitHub Pages hosting uses email fallback. Please send your enquiry to ${site.contactEmail}.`);
+      return;
+    }
+
     setStatus("loading");
     setServerMessage("");
     try {
@@ -186,6 +212,15 @@ export function ContactForm() {
       >
         {status === "loading" ? "Sending…" : "Send message"}
       </button>
+      {staticContactFallback ? (
+        <p className="text-xs text-muted">
+          GitHub Pages does not run server APIs. Submitting opens your email app to send this enquiry to{" "}
+          <a href={`mailto:${site.contactEmail}`} className="text-lime underline underline-offset-2">
+            {site.contactEmail}
+          </a>
+          .
+        </p>
+      ) : null}
     </form>
   );
 }
