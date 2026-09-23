@@ -24,6 +24,7 @@ npm run dev
 
 - `npm run dev` — development
 - `npm run build` — production build
+- `npm run build:pages` — static GitHub Pages build
 - `npm run typecheck` — TypeScript
 - `npm run preview` — serve the production build
 
@@ -115,3 +116,19 @@ The contact handler in `src/server/contact.ts` is isolated so a `contact_submiss
 `id`, `name`, `email`, `phone`, `company`, `service`, `message`, `created_at`
 
 The public website does not depend on a database today.
+
+## Deploy to GitHub Pages (`thevisioninfotech.com`)
+
+1. Push to `main` (or run the **Deploy to GitHub Pages** workflow manually). The workflow in `.github/workflows/deploy-pages.yml` runs `npm ci`, builds with `npm run build:pages`, uploads `dist`, and deploys with the official Pages actions.
+2. In GitHub repository settings, set **Pages** source to **GitHub Actions**.
+3. Ensure the root `CNAME` file stays as `thevisioninfotech.com`.
+4. In your DNS provider, point the apex domain to GitHub Pages using A records:
+   - `185.199.108.153`
+   - `185.199.109.153`
+   - `185.199.110.153`
+   - `185.199.111.153`
+   and add `www` as `CNAME thevisioninfotech.com` (optional but recommended).
+
+### Static-hosting limitation
+
+GitHub Pages is static hosting only. Server-side endpoints such as `POST /api/contact` (SMTP/API handling) do not run there. This project now falls back to a `mailto:` flow on Pages; for full backend form processing use a separate API/backend or an external form provider.
