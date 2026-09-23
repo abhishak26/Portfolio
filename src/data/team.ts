@@ -14,7 +14,7 @@ export const team: TeamMember[] = [
     name: "Santhosh",
     roles: ["Founder", "Full Stack Developer", "Content Creator", "Team Lead"],
     image: "/images/team/santhosh.jpg",
-    experience: "Two years",
+    experience: "2 years",
     company: "YRS Infotech",
     featured: true,
   },
